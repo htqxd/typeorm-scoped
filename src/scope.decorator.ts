@@ -1,7 +1,7 @@
-import {getMetadataArgsStorage} from 'typeorm';
+import {getMetadataArgsStorage, ObjectLiteral} from 'typeorm';
 import {ScopedTableMetadata, ScopeObjectKeys} from './scope-types';
 
-export function DefaultScopes<T>(defaultScopes: ScopeObjectKeys<T>) {
+export function DefaultScopes<T extends ObjectLiteral>(defaultScopes: ScopeObjectKeys<T>) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function) {
     const table = getMetadataArgsStorage().tables.find(
@@ -20,7 +20,7 @@ export function DefaultScopes<T>(defaultScopes: ScopeObjectKeys<T>) {
   };
 }
 
-export function Scopes<T>(scopes: ScopeObjectKeys<T>) {
+export function Scopes<T extends ObjectLiteral>(scopes: ScopeObjectKeys<T>) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Function) {
     const table = getMetadataArgsStorage().tables.find(
