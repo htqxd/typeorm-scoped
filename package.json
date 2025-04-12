@@ -5,6 +5,7 @@
   "description": "TypeORM extension which adds scopes and default scopes to entities and repositories.",
   "scripts": {
     "dev": "nodemon -w 'src/**/*' --ignore 'src/**/*.spec.ts' -e ts -x 'npm run build'",
+    "lint": "eslint . --fix",
     "build": "rimraf dist && tsc",
     "prepublish": "npm run build"
   },

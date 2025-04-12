@@ -1,8 +1,8 @@
-import { getMetadataArgsStorage, SelectQueryBuilder } from 'typeorm';
+/* eslint-disable @typescript-eslint/ban-types */
+import { getMetadataArgsStorage, ObjectLiteral, SelectQueryBuilder } from 'typeorm';
 import { ScopedTableMetadata, ScopeObjectKeys } from './scope-types';
 
-export function DefaultScopes<T>(defaultScopes: ScopeObjectKeys<T>) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+export function DefaultScopes<T extends ObjectLiteral>(defaultScopes: ScopeObjectKeys<T>) {
   return function (target: Function) {
     const table = getMetadataArgsStorage().tables.find(
       (table) => table.target === target,
@@ -25,8 +25,7 @@ export function DefaultScopes<T>(defaultScopes: ScopeObjectKeys<T>) {
   };
 }
 
-export function Scopes<T>(scopes: ScopeObjectKeys<T>) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+export function Scopes<T extends ObjectLiteral>(scopes: ScopeObjectKeys<T>) {
   return function (target: Function) {
     const table = getMetadataArgsStorage().tables.find(
       (table) => table.target === target,
